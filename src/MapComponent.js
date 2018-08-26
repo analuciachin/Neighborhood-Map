@@ -3,15 +3,48 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 export class MapContainer extends Component {
 
+  //let apiUrl = query => 'https://en.wikipedia.org/w/api.php?title=${title}'
+
+
+
   constructor(props) {
     super(props);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
-    };
+      selectedPlace: {},
+      wikiData: []
+    }
+
+    this.locations = [
+      {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Museum Marker', position: {lat: 45.498511, lng: -73.579365}},
+      {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', position: {lat: 45.504487, lng: -73.556781}},
+      {title: 'Montreal Botanical Garden', name: 'Botanical Marker', position: {lat: 45.557619, lng: -73.556947}},
+      {title: 'Old Port of Montreal', name: 'Old Port Marker', position: {lat: 45.499981, lng: -73.553378}},
+      {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}},
+      {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
+      {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
+    ];
+/*
+    componentDidMount() {
+      fetch(apiUrl(this.props.title))
+      .then(console.log('fetch successful'))
+      .then(response => {
+          if(!response.ok) {
+            throw Error('Response not ok') 
+          } 
+      })
+      .then(data => data.json())
+      .then(data => {
+          this.setState={wikiData: data}
+      })
+      console.log(data)
+    }
+*/    
   }
+
+
   onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
@@ -19,18 +52,15 @@ export class MapContainer extends Component {
       showingInfoWindow: true
     });
   }
-/*
-  var location = [
-      {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Museum Marker', position: {lat: 45.498511, lng: -73.579365}}
-      {title: 'Notre-Dame Basilica', name: 'Notre Dame Marker', position: {lat: 45.504487, lng: -73.556781}}
-      {title: 'Botanical Garden', name: 'Botanical Marker', position: {lat: 45.557619, lng: -73.556947}}
-      {title: 'Old Port of Montreal', name: 'Old Port Marker', position: {lat: 45.499981, lng: -73.553378}}
-      {title: 'Saint Joseph Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}}
-      {title: 'Mount Royal Park', name: 'Mount Royal Marker', position={lat: 45.501598, lng: -73.593234}}
-      {title: 'Olympic Stadium', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
-  ];
-*/
+
+
+
   render() {
+
+
+
+
+
     if (!this.props.google) {
       return <div>Loading...</div>;
     }
@@ -49,7 +79,16 @@ export class MapContainer extends Component {
             lng: -73.584002
           }}
         >
-          <Marker
+          
+          {this.locations.map((location) => (
+            <Marker key={location.title}
+              onClick={this.onMarkerClick}
+              position={location.position} 
+              title={location.title}
+              name={location.name}/>
+          ))}
+          
+{/*          <Marker
             onClick={this.onMarkerClick}
             position={{lat: 45.498511, lng: -73.579365}}
             title={"Montreal Museum of Fine Arts"}  
@@ -84,7 +123,7 @@ export class MapContainer extends Component {
             position={{lat: 45.559774, lng: -73.551483}}
             title={"Olympic Stadium (Montreal)"}
             name={"Olympic Marker"}    />
-
+*/}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
