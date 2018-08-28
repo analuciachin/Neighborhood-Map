@@ -3,9 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 export class MapContainer extends Component {
 
-  //let apiUrl = query => 'https://en.wikipedia.org/w/api.php?title=${title}'
-
-
+  //let apiUrl = query => 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${title}'
 
   constructor(props) {
     super(props);
@@ -25,23 +23,18 @@ export class MapContainer extends Component {
       {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}},
       {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
       {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
-    ];
-/*
-    componentDidMount() {
-      fetch(apiUrl(this.props.title))
-      .then(console.log('fetch successful'))
-      .then(response => {
-          if(!response.ok) {
-            throw Error('Response not ok') 
-          } 
-      })
-      .then(data => data.json())
-      .then(data => {
-          this.setState={wikiData: data}
-      })
-      console.log(data)
-    }
-*/    
+    ];    
+  }
+
+
+  componentDidMount() {
+
+    const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+    const url = 'https://en.wikipedia.org/w/api.php?action=query&titles=pizza&prop=revisions&rvprop=content&format=json&formatversion=2';
+    fetch(proxyurl + url)
+    .then(response => response.json())
+    .then(body => console.log(body.query.pages[0].revisions[0].content))
+    .catch(err => console.log(err))
   }
 
 
