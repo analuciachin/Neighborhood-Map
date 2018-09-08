@@ -22,14 +22,11 @@ export class MapContainer extends Component {
         {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
         {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
       ]
-    }
-
-    
+    }  
   }
 
-
+/*
   componentDidMount() {
-
     
     const proxyurl = 'https://cors-anywhere.herokuapp.com/';
     const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&titles=pizza';
@@ -40,6 +37,17 @@ export class MapContainer extends Component {
     .catch(err => console.log(err))
     
   }
+*/
+
+  fetchData = (title) => {
+  //  const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+    const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
+    fetch(url)
+    .then(response => response.json())
+    //.then(body => console.log(body.query.pages[0].extract))
+    .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
+    .catch(err => console.log(err))
+  }
 
 
   onMarkerClick(props, marker, e) {
@@ -48,6 +56,9 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
+    
+    this.fetchData(this.state.selectedPlace.title);
+  
   }
 
 
