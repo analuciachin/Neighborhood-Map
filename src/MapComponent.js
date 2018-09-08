@@ -12,29 +12,33 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      wikiData: []
+      wikiData: [],
+      locations: [
+        {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Marker', position: {lat: 45.498511, lng: -73.579365}},
+        {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', position: {lat: 45.504487, lng: -73.556781}},
+        {title: 'Montreal Botanical Garden', name: 'Botanical Marker', position: {lat: 45.557619, lng: -73.556947}},
+        {title: 'Old Port of Montreal', name: 'Old Port Marker', position: {lat: 45.499981, lng: -73.553378}},
+        {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}},
+        {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
+        {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
+      ]
     }
 
-    this.locations = [
-      {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Museum Marker', position: {lat: 45.498511, lng: -73.579365}},
-      {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', position: {lat: 45.504487, lng: -73.556781}},
-      {title: 'Montreal Botanical Garden', name: 'Botanical Marker', position: {lat: 45.557619, lng: -73.556947}},
-      {title: 'Old Port of Montreal', name: 'Old Port Marker', position: {lat: 45.499981, lng: -73.553378}},
-      {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}},
-      {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
-      {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
-    ];    
+    
   }
 
 
   componentDidMount() {
 
+    
     const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-    const url = 'https://en.wikipedia.org/w/api.php?action=query&titles=pizza&prop=revisions&rvprop=content&format=json&formatversion=2';
+    const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&titles=pizza';
     fetch(proxyurl + url)
     .then(response => response.json())
-    .then(body => console.log(body.query.pages[0].revisions[0].content))
+    //.then(body => console.log(body.query.pages[0].extract))
+    .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
     .catch(err => console.log(err))
+    
   }
 
 
@@ -49,10 +53,7 @@ export class MapContainer extends Component {
 
 
   render() {
-
-
-
-
+ 
 
     if (!this.props.google) {
       return <div>Loading...</div>;
@@ -73,7 +74,7 @@ export class MapContainer extends Component {
           }}
         >
           
-          {this.locations.map((location) => (
+          {this.state.locations.map((location) => (
             <Marker key={location.title}
               onClick={this.onMarkerClick}
               position={location.position} 
@@ -81,48 +82,13 @@ export class MapContainer extends Component {
               name={location.name}/>
           ))}
           
-{/*          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.498511, lng: -73.579365}}
-            title={"Montreal Museum of Fine Arts"}  
-            name={"Fine Arts Museum Marker"}    />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.504487, lng: -73.556781}}
-            title={"Notre-Dame Basilica (Montreal)"}
-            name={"Notre Dame Marker"}   />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.557619, lng: -73.556947}}
-            title={"Montreal Botanical Garden"}
-            name={"Botanical Marker"}   />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.499981, lng: -73.553378}}
-            title={"Old Port of Montreal"}
-            name={"Old Port Marker"}    />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.492172, lng: -73.616944}}
-            title={"Saint Joseph's Oratory"}
-            name={"Oratory Marker"}    />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.501598, lng: -73.593234}}
-            title={"Mount Royal"}
-            name={"Mount Royal Marker"}    />
-          <Marker
-            onClick={this.onMarkerClick}
-            position={{lat: 45.559774, lng: -73.551483}}
-            title={"Olympic Stadium (Montreal)"}
-            name={"Olympic Marker"}    />
-*/}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
           >
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              {/*<h1>{this.state.selectedPlace.name}</h1>*/}
+              <h1>{this.state.wikiData}</h1>
             </div>
           </InfoWindow>
         </Map>
