@@ -27,12 +27,12 @@ class ListLocations extends Component {
 
 
 		return (
-			<div>
-				{JSON.stringify(this.state)}
+			<div className="search-bar-list-locations">
 				<div className="search-locations-bar">
 					<input type="text" placeholder="Search by location" value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)} />
 				</div>
-				<ul>
+				{JSON.stringify(this.state)}
+				<ul className="list-locations">
 					{showingLocations.map((location) => (
 					<li key={location.name}>
 						{location.title}

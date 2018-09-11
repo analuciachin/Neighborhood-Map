@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ListLocations from './ListLocations'
 import MapContainer from './MapComponent'
+import SearchLocationsHeader from './SearchLocationsHeader'
 
 class App extends Component {
 
@@ -20,9 +21,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <ListLocations locations={this.state.locations} />
-        <MapContainer />
+      <div className="app">
+        <div className="grid-container">
+          {/*<SearchLocationsHeader />*/}
+          <ListLocations locations={this.state.locations} />
+          <MapContainer />
+        </div>
       </div>
     );
   }

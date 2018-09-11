@@ -1,7 +1,53 @@
-.App {
-  text-align: center;
+html, body, .root {
+  height: 100%;
 }
 
+body {
+  line-height: 1.5;
+}
+
+body, .app {
+ background: white;
+}
+
+/*
+.app {
+  text-align: left;
+}
+*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 10% 90%;
+}
+
+.search-bar-list-locations {
+  width: 100%;
+}
+
+
+.list-locations {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px;
+}
+
+.list-locations li {
+  font-family: arial;
+  line-height: 2.0;
+}
+
+.search-locations-bar input {
+  width: 85%;
+  padding: 10px 8px;
+  font-size: 1em;
+  margin: 10px;
+}
+
+
+
+/*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -26,3 +72,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+*/
