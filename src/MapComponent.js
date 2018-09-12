@@ -14,13 +14,13 @@ export class MapContainer extends Component {
       selectedPlace: {},
       wikiData: [],
       locations: [
-        {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Marker', position: {lat: 45.498511, lng: -73.579365}},
-        {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', position: {lat: 45.504487, lng: -73.556781}},
-        {title: 'Montreal Botanical Garden', name: 'Botanical Marker', position: {lat: 45.557619, lng: -73.556947}},
-        {title: 'Old Port of Montreal', name: 'Old Port Marker', position: {lat: 45.499981, lng: -73.553378}},
-        {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', position: {lat: 45.492172, lng: -73.616944}},
-        {title: 'Mount Royal', name: 'Mount Royal Marker', position: {lat: 45.501598, lng: -73.593234}},
-        {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', position: {lat: 45.559774, lng: -73.551483}}            
+        {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Marker', img: require('./images/fine_arts.png'), position: {lat: 45.498511, lng: -73.579365}},
+        {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', img: require('./images/notre_dame.jpg'), position: {lat: 45.504487, lng: -73.556781}},
+        {title: 'Montreal Botanical Garden', name: 'Botanical Marker', img: require('./images/botanical_garden.jpg'), position: {lat: 45.557619, lng: -73.556947}},
+        {title: 'Old Port of Montreal', name: 'Old Port Marker', img: require('./images/no_image.png'), position: {lat: 45.499981, lng: -73.553378}},
+        {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', img: require('./images/no_image.png'), position: {lat: 45.492172, lng: -73.616944}},
+        {title: 'Mount Royal', name: 'Mount Royal Marker', img: require('./images/no_image.png'), position: {lat: 45.501598, lng: -73.593234}},
+        {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', img: require('./images/no_image.png'), position: {lat: 45.559774, lng: -73.551483}}            
       ]
     }  
   }
@@ -75,7 +75,7 @@ export class MapContainer extends Component {
         <Map
           style={{
             width: "80%",
-            height: "105%"
+            height: "100%"
           }}
           google={this.props.google}
           zoom={14}
@@ -99,7 +99,9 @@ export class MapContainer extends Component {
           >
             <div>
               {/*<h1>{this.state.selectedPlace.name}</h1>*/}
-              <h1>{this.state.wikiData}</h1>
+              <img src={this.state.locations[4].img} alt="fine arts museum" 
+                  style={{float: "left", width: "20%", height: "30%", padding: "0 10px 0 0"}} />
+              <p style={{fontFamily: "arial", fontSize: "1.5em"}}>{this.state.wikiData}</p>
             </div>
           </InfoWindow>
         </Map>
