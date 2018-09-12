@@ -71,11 +71,11 @@ export class MapContainer extends Component {
     }
 
     return (
-      <div>
+      <div className="map-container">
         <Map
           style={{
-            width: "100%",
-            height: "100%"
+            width: "80%",
+            height: "105%"
           }}
           google={this.props.google}
           zoom={14}

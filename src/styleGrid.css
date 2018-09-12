@@ -1,0 +1,27 @@
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr;
+  grid-template-areas:
+  "search-header map-header"
+  "search-list map";
+  /*grid-gap: 0.2em;*/
+  
+}
+
+.search-location-header-component {
+  grid-area: search-header;
+}
+
+.map-header-component {
+  grid-area: map-header;
+}
+
+.list-location-component {
+  grid-area: search-list;
+}
+
+.map-container-component {
+  grid-area: map;
+}

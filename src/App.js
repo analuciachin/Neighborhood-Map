@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+/*import logo from './logo.svg';*/
 import './App.css';
+import './styleGrid.css';
 import ListLocations from './ListLocations'
 import MapContainer from './MapComponent'
 import SearchLocationsHeader from './SearchLocationsHeader'
+import MapHeader from './MapHeader'
 
 class App extends Component {
 
@@ -23,9 +25,18 @@ class App extends Component {
     return (
       <div className="app">
         <div className="grid-container">
-          {/*<SearchLocationsHeader />*/}
-          <ListLocations locations={this.state.locations} />
-          <MapContainer />
+          <div className="search-location-header-component">
+            <SearchLocationsHeader />
+          </div>
+          <div className="map-header-component">
+            <MapHeader />
+          </div>
+          <div className="list-location-component">
+            <ListLocations locations={this.state.locations} />
+          </div>
+          <div className="map-container-component">
+            <MapContainer />
+          </div>
         </div>
       </div>
     );

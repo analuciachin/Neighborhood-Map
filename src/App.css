@@ -1,5 +1,6 @@
 html, body, .root {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -10,32 +11,52 @@ body, .app {
  background: white;
 }
 
-/*
-.app {
-  text-align: left;
-}
-*/
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 10% 90%;
+/* App.js */
+
+.search-location-header-component {
+  background-color: #1f1f14;
 }
+
+.map-header-component {
+  background-color: #1f1f14;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 100%;
+}
+
+.list-location-component {
+  background-color: #1f1f14;
+}
+
+.map-container-component {
+
+}
+
+
+/* SearchLocationsHeader.js */
+
+.search-locations-title{
+  margin: 1em;
+}
+
+.search-locations-title h1 {
+  font-size: 1.6em;
+  font-family: arial;
+  text-align: center;
+  color: #e0e0d1;
+}
+
+.search-locations-title button {
+  margin: 0 auto;
+  display: block;
+}
+
+/* ListLocations.js */
 
 .search-bar-list-locations {
   width: 100%;
-}
-
-
-.list-locations {
-  list-style-type: none;
-  padding: 0;
-  margin: 10px;
-}
-
-.list-locations li {
-  font-family: arial;
-  line-height: 2.0;
 }
 
 .search-locations-bar input {
@@ -43,6 +64,25 @@ body, .app {
   padding: 10px 8px;
   font-size: 1em;
   margin: 10px;
+}
+
+.list-locations {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.2em;
+}
+
+.list-locations li {
+  font-family: arial;
+  line-height: 2em;
+  font-size: 1em;
+  color: #e0e0d1;
+}
+
+/* MapHeader.js */
+
+.MapHeader {
+
 }
 
 
