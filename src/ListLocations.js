@@ -9,13 +9,13 @@ class ListLocations extends Component {
 		let showingLocations
 		if (this.props.query) {
 			const match = new RegExp(escapeRegExp(this.props.query), 'i')
-			showingLocations = this.props.locations.filter((location) => match.test(location.title))
+			showingLocations = this.props.locations.filter((location) => match.test(location.name))
 		}
 		else {
 			showingLocations = this.props.locations
 		}
 
-		showingLocations.sort(sortBy('title'))
+		showingLocations.sort(sortBy('name'))
 
 
 		return (
@@ -26,8 +26,8 @@ class ListLocations extends Component {
 				{/*{JSON.stringify(this.state)}*/}
 				<ul className="list-locations">
 					{showingLocations.map((location) => (
-					<li key={location.name}>
-						{location.title}
+					<li key={location.title}>
+						{location.name}
 					</li>
 					))}
 				</ul>

@@ -42,7 +42,8 @@ export class MapContainer extends Component {
 
 
   onMarkerClick(props, marker, e) {
-    this.setState({
+    //console.log(props);
+  this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
@@ -50,7 +51,7 @@ export class MapContainer extends Component {
     
     this.fetchData(this.state.selectedPlace.title);
   }
-
+  
 
 
   render() {
@@ -58,14 +59,21 @@ export class MapContainer extends Component {
     let showingMarkers
     if (this.props.query) {
       const match = new RegExp(escapeRegExp(this.props.query), 'i')
-      showingMarkers = this.props.locations.filter((location) => match.test(location.title))
+      showingMarkers = this.props.locations.filter((location) => match.test(location.name))
     }
     else {
       showingMarkers = this.props.locations
     }
 
-    showingMarkers.sort(sortBy('title'))
+    showingMarkers.sort(sortBy('name'))
  
+ 
+  let bounds = new this.props.google.maps.LatLngBounds();
+  for (let i=0; i < this.props.locations.length; i++) {
+    bounds.extend(this.props.locations[i].position);
+    console.log(bounds.extend(this.props.locations[i].position));
+  }
+  
  
     if (!this.props.google) {
       return <div>Loading...</div>;
@@ -84,6 +92,7 @@ export class MapContainer extends Component {
             lat: 45.493627,
             lng: -73.584002
           }}
+      bounds={bounds}
         >
           
           {showingMarkers.map((location) => (
@@ -91,7 +100,9 @@ export class MapContainer extends Component {
               onClick={this.onMarkerClick}
               position={location.position} 
               title={location.title}
-              name={location.name}/>
+              name={location.name}
+        img={location.img} 
+        articleUrl={location.articleUrl} />
           ))}
           
           <InfoWindow
@@ -99,9 +110,12 @@ export class MapContainer extends Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-      {/*     <h1>{this.state.wikiData}</h1>*/}
-              <img src={this.props.locations[4].img} alt="fine arts museum" style={{float: "left", width: "20%", height: "30%", padding: "0 10px 0 0"}} />
+        <h1 style={{textAlign: "center"}}>{this.state.selectedPlace.name}</h1>
+              <img src={this.state.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "25%", height: "50%", padding: "0 10px 0 0"}} />
               <p style={{fontFamily: "arial", fontSize: "1.5em"}}>{this.state.wikiData}</p> 
+        <div style={{textAlign: "right", marginRight: "1em"}}>
+        <p style={{fontStyle: "italic"}}>See full article: <a href={this.state.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
+        </div>
             </div>
           </InfoWindow>
         </Map>
