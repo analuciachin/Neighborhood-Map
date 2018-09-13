@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
+//import FineArtsMuseum from "./images/fine_arts.png";
+
 
 export class MapContainer extends Component {
-
-  //let apiUrl = query => 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvsection=0&titles=${title}'
 
   constructor(props) {
     super(props);
@@ -12,16 +14,7 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      wikiData: [],
-      locations: [
-        {title: 'Montreal Museum of Fine Arts', name: 'Fine Arts Marker', img: require('./images/fine_arts.png'), position: {lat: 45.498511, lng: -73.579365}},
-        {title: 'Notre-Dame Basilica (Montreal)', name: 'Notre Dame Marker', img: require('./images/notre_dame.jpg'), position: {lat: 45.504487, lng: -73.556781}},
-        {title: 'Montreal Botanical Garden', name: 'Botanical Marker', img: require('./images/botanical_garden.jpg'), position: {lat: 45.557619, lng: -73.556947}},
-        {title: 'Old Port of Montreal', name: 'Old Port Marker', img: require('./images/no_image.png'), position: {lat: 45.499981, lng: -73.553378}},
-        {title: 'Saint Joseph\'s Oratory', name: 'Oratory Marker', img: require('./images/no_image.png'), position: {lat: 45.492172, lng: -73.616944}},
-        {title: 'Mount Royal', name: 'Mount Royal Marker', img: require('./images/no_image.png'), position: {lat: 45.501598, lng: -73.593234}},
-        {title: 'Olympic Stadium (Montreal)', name: 'Olympic Marker', img: require('./images/no_image.png'), position: {lat: 45.559774, lng: -73.551483}}            
-      ]
+      wikiData: []
     }  
   }
 
@@ -40,11 +33,9 @@ export class MapContainer extends Component {
 */
 
   fetchData = (title) => {
-  //  const proxyurl = 'https://cors-anywhere.herokuapp.com/';
     const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
     fetch(url)
     .then(response => response.json())
-    //.then(body => console.log(body.query.pages[0].extract))
     .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
     .catch(err => console.log(err))
   }
@@ -58,14 +49,24 @@ export class MapContainer extends Component {
     });
     
     this.fetchData(this.state.selectedPlace.title);
-  
   }
 
 
 
   render() {
- 
+    
+    let showingMarkers
+    if (this.props.query) {
+      const match = new RegExp(escapeRegExp(this.props.query), 'i')
+      showingMarkers = this.props.locations.filter((location) => match.test(location.title))
+    }
+    else {
+      showingMarkers = this.props.locations
+    }
 
+    showingMarkers.sort(sortBy('title'))
+ 
+ 
     if (!this.props.google) {
       return <div>Loading...</div>;
     }
@@ -85,7 +86,7 @@ export class MapContainer extends Component {
           }}
         >
           
-          {this.state.locations.map((location) => (
+          {showingMarkers.map((location) => (
             <Marker key={location.title}
               onClick={this.onMarkerClick}
               position={location.position} 
@@ -98,10 +99,9 @@ export class MapContainer extends Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-              {/*<h1>{this.state.selectedPlace.name}</h1>*/}
-              <img src={this.state.locations[4].img} alt="fine arts museum" 
-                  style={{float: "left", width: "20%", height: "30%", padding: "0 10px 0 0"}} />
-              <p style={{fontFamily: "arial", fontSize: "1.5em"}}>{this.state.wikiData}</p>
+      {/*     <h1>{this.state.wikiData}</h1>*/}
+              <img src={this.props.locations[4].img} alt="fine arts museum" style={{float: "left", width: "20%", height: "30%", padding: "0 10px 0 0"}} />
+              <p style={{fontFamily: "arial", fontSize: "1.5em"}}>{this.state.wikiData}</p> 
             </div>
           </InfoWindow>
         </Map>

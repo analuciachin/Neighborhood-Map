@@ -1,22 +1,14 @@
-import React, { Component } from 'react'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
+import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 class ListLocations extends Component {
-
-	state = {
-		query: ''
-	}
-
-	updateQuery = (query) => {
-		this.setState({ query: query.trim() })
-	}
 
 	render() {
 
 		let showingLocations
-		if (this.state.query) {
-			const match = new RegExp(escapeRegExp(this.state.query), 'i')
+		if (this.props.query) {
+			const match = new RegExp(escapeRegExp(this.props.query), 'i')
 			showingLocations = this.props.locations.filter((location) => match.test(location.title))
 		}
 		else {
@@ -29,9 +21,9 @@ class ListLocations extends Component {
 		return (
 			<div className="search-bar-list-locations">
 				<div className="search-locations-bar">
-					<input type="text" placeholder="Search by location" value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)} />
+					<input type="text" placeholder="Search by location" value={this.props.query} onChange={(event) => this.props.onUpdateQuery(event.target.value)} />
 				</div>
-				{JSON.stringify(this.state)}
+				{/*{JSON.stringify(this.state)}*/}
 				<ul className="list-locations">
 					{showingLocations.map((location) => (
 					<li key={location.name}>

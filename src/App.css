@@ -42,7 +42,7 @@ body, .app {
 }
 
 .search-locations-title h1 {
-  font-size: 1.6em;
+  font-size: 1.4em;
   font-family: arial;
   text-align: center;
   color: #e0e0d1;
@@ -75,8 +75,9 @@ body, .app {
 .list-locations li {
   font-family: arial;
   line-height: 2em;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #e0e0d1;
+  margin-left: 10px;
 }
 
 /* MapHeader.js */
