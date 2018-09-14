@@ -110,12 +110,12 @@ export class MapContainer extends Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-        <h1 style={{textAlign: "center"}}>{this.state.selectedPlace.name}</h1>
+              <h1 style={{textAlign: "center", fontSize: "1.5em"}}>{this.state.selectedPlace.name}</h1>
               <img src={this.state.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "25%", height: "50%", padding: "0 10px 0 0"}} />
-              <p style={{fontFamily: "arial", fontSize: "1.5em"}}>{this.state.wikiData}</p> 
-        <div style={{textAlign: "right", marginRight: "1em"}}>
-        <p style={{fontStyle: "italic"}}>See full article: <a href={this.state.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
-        </div>
+              <p style={{fontFamily: "arial", fontSize: "1.2em"}}>{this.state.wikiData}</p> 
+              <div style={{textAlign: "right", marginRight: "1em"}}>
+                <p style={{fontStyle: "italic", marginTop: "1em"}}>See full article: <a href={this.state.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
+              </div>
             </div>
           </InfoWindow>
         </Map>

@@ -21,11 +21,14 @@ class App extends Component {
       {title: 'Saint Joseph\'s Oratory', name: 'Saint Joseph\'s Oratory', img: require('./images/oratory.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Saint_Joseph%27s_Oratory', position: {lat: 45.492172, lng: -73.616944}},
       {title: 'Mount Royal', name: 'Mount Royal Park', img: require('./images/mount_royal.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Mount_Royal', position: {lat: 45.501598, lng: -73.593234}},
       {title: 'Olympic Stadium (Montreal)', name: 'Olympic Stadium', img: require('./images/olympic_stadium.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Olympic_Stadium_(Montreal)', position: {lat: 45.559774, lng: -73.551483}},            
-      {title: 'Parc Jean-Drapeau', name: 'Parc Jean-Drapeau', img: '', articleUrl: 'https://en.wikipedia.org/wiki/Parc_Jean-Drapeau', position: {lat: 45.503691, lng: -73.529104}},
-      {title: 'Montreal Biosphere', name: 'Biosphere', img: '', articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Biosphere', position: {lat: 45.514229, lng: -73.531342}},
-      {title: 'Montreal Biodome', name: 'Biodome', img: '', articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Biodome', position: {lat: 45.559602, lng: -73.54971}},
-      {title: 'Montreal Science Centre', name: 'Science Centre', img: '', articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Science_Centre', position: {lat: 45.505106, lng: -73.553282}},
-      {title: 'Musée d\'art contemporain de Montréal', name: 'Musée d\'art contemporain', img: '', articleUrl: 'https://en.wikipedia.org/wiki/Mus%C3%A9e_d%27art_contemporain_de_Montr%C3%A9al', position: {lat: 45.507828, lng: -73.56679}}
+      {title: 'Parc Jean-Drapeau', name: 'Parc Jean-Drapeau', img: require('./images/jean_drapeau.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Parc_Jean-Drapeau', position: {lat: 45.503691, lng: -73.529104}},
+      {title: 'Montreal Biosphere', name: 'Biosphere', img: require('./images/biosphere.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Biosphere', position: {lat: 45.514229, lng: -73.531342}},
+      {title: 'Montreal Biodome', name: 'Biodome', img: require('./images/biodome.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Biodome', position: {lat: 45.559602, lng: -73.54971}},
+      {title: 'Montreal Science Centre', name: 'Science Centre', img: require('./images/science_centre.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Science_Centre', position: {lat: 45.505106, lng: -73.553282}},
+      {title: 'Musée d\'art contemporain de Montréal', name: 'Musée d\'art contemporain', img: require('./images/mac.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Mus%C3%A9e_d%27art_contemporain_de_Montr%C3%A9al', position: {lat: 45.507828, lng: -73.56679}},
+      {title: 'Montreal Casino', name: 'Casino', img: require('./images/casino.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Casino', position: {lat: 45.50547, lng: -73.525632}},
+      {title: 'Rio Tinto Alcan Planetarium', name: 'Rio Tinto Alcan Planetarium', img: require('./images/planetarium.jpg'), articleUrl: 'https://en.wikipedia.org/wiki/Rio_Tinto_Alcan_Planetarium', position: {lat: 45.560676, lng: -73.55055}},
+      {title: 'Montreal Clock Tower', name: 'Clock Tower', img: require('./images/clock_tower.png'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Clock_Tower', position: {lat: 45.510044, lng: -73.548185}}    
     ]
   }
   
