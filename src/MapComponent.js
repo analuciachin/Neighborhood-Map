@@ -71,7 +71,7 @@ export class MapContainer extends Component {
   let bounds = new this.props.google.maps.LatLngBounds();
   for (let i=0; i < this.props.locations.length; i++) {
     bounds.extend(this.props.locations[i].position);
-    console.log(bounds.extend(this.props.locations[i].position));
+    //console.log(bounds.extend(this.props.locations[i].position));
   }
   
  
@@ -83,8 +83,8 @@ export class MapContainer extends Component {
       <div className="map-container">
         <Map
           style={{
-            width: "80%",
-            height: "100%"
+            width: "70%",
+            height: "80%"
           }}
           google={this.props.google}
           zoom={14}

@@ -1,8 +1,10 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 9fr;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 10% 80%;
   grid-template-areas:
   "search-header map-header"
   "search-list map";
@@ -16,6 +18,7 @@
 
 .map-header-component {
   grid-area: map-header;
+  width: 100%;
 }
 
 .list-location-component {
