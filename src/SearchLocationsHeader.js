@@ -5,8 +5,7 @@ function SearchLocationsHeader (props) {
 	return (
 		<div>
 			<div className="search-locations-title">
-  				<h1>Montreal</h1>
-  				<button type="button">Hide</button>
+  				<h1 style={{fontSize: "2em"}}>Montreal</h1>
   			</div>
 		</div>
 	)

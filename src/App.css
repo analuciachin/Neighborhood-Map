@@ -60,7 +60,7 @@ body, .app {
 }
 
 .search-locations-bar input {
-  width: 85%;
+/*  width: 85%;*/
   padding: 10px 8px;
   font-size: 1em;
   margin: 10px;

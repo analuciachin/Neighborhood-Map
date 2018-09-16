@@ -1,30 +1,131 @@
+@media screen and (min-width: 320px) {
+  .grid-container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 100%;
+    /*grid-template-rows: 100%;*/
+    grid-template-areas:
+    "search-header"
+    "search-list"
+    "map";
+    /*grid-gap: 0.2em;*/
+    
+  }
 
-.grid-container {
-  display: grid;
-  width: 100vw;
-  height: 100vh;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 10% 80%;
-  grid-template-areas:
-  "search-header map-header"
-  "search-list map";
-  /*grid-gap: 0.2em;*/
-  
+  .search-location-header-component {
+    grid-area: search-header;
+  }
+
+  .list-location-component {
+    grid-area: search-list;
+    height: 130%;
+  }
+
+  .map-container-component {
+    grid-area: map;
+  }
+
+  .search-locations-bar input {
+    width: 60%;
+  }
+
+  .search-locations-title {
+    margin: 10px;
+  }
+
+  .search-locations-title h1 {
+    text-align: left;
+  }
+
 }
 
-.search-location-header-component {
-  grid-area: search-header;
+
+@media screen and (min-width: 550px) {
+  .grid-container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 20% 80%;
+    grid-template-areas:
+    "search-header map-header"
+    "search-list map";
+    /*grid-gap: 0.2em;*/
+    
+  }
+
+  .search-location-header-component {
+    grid-area: search-header;
+  }
+
+  .map-header-component {
+    grid-area: map-header;
+    width: 150%;
+  }
+
+  .list-location-component {
+    grid-area: search-list;
+    height: 130%;
+  }
+
+  .map-container-component {
+    grid-area: map;
+  }
+
+  .search-locations-bar input {
+    width: 80%;
+  }
+
+  .search-locations-title {
+    vertical-align: middle;
+  }
+
+  .search-locations-title h1 {
+    margin-top: 30%;
+    text-align: center;
+  }
 }
 
-.map-header-component {
-  grid-area: map-header;
-  width: 100%;
+@media screen and (min-width: 900px) {
+  .grid-container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 15% 85%;
+    grid-template-areas:
+    "search-header map-header"
+    "search-list map";
+    /*grid-gap: 0.2em;*/ 
+  }
+
+  .search-location-header-component {
+    grid-area: search-header;
+  }
+
+  .map-header-component {
+    grid-area: map-header;
+    width: 125%;
+  }
+
+  .list-location-component {
+    grid-area: search-list;
+    height:120%;
+  }
+
+  .map-container-component {
+    grid-area: map;
+  }
+
+  .search-locations-bar input {
+    width: 80%;
+  }
+
+  .search-locations-title h1 {
+    text-align: center;
+  }
+
 }
 
-.list-location-component {
-  grid-area: search-list;
-}
 
-.map-container-component {
-  grid-area: map;
-}

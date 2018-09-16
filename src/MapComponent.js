@@ -83,8 +83,8 @@ export class MapContainer extends Component {
       <div className="map-container">
         <Map
           style={{
-            width: "70%",
-            height: "80%"
+            width: "100%",
+            height: "100%"
           }}
           google={this.props.google}
           zoom={14}
@@ -92,7 +92,7 @@ export class MapContainer extends Component {
             lat: 45.493627,
             lng: -73.584002
           }}
-      bounds={bounds}
+          bounds={bounds}
         >
           
           {showingMarkers.map((location) => (
@@ -101,13 +101,14 @@ export class MapContainer extends Component {
               position={location.position} 
               title={location.title}
               name={location.name}
-        img={location.img} 
-        articleUrl={location.articleUrl} />
+              img={location.img} 
+              articleUrl={location.articleUrl} />
           ))}
           
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
+            style={{width: "20%"}}   
           >
             <div>
               <h1 style={{textAlign: "center", fontSize: "1.5em"}}>{this.state.selectedPlace.name}</h1>

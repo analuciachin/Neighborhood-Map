@@ -21,7 +21,7 @@ class ListLocations extends Component {
 		return (
 			<div className="search-bar-list-locations">
 				<div className="search-locations-bar">
-					<input type="text" placeholder="Search by location" style={{width: "auto"}} value={this.props.query} onChange={(event) => this.props.onUpdateQuery(event.target.value)} />
+					<input type="text" placeholder="Search by location" value={this.props.query} onChange={(event) => this.props.onUpdateQuery(event.target.value)} />
 				</div>
 				{/*{JSON.stringify(this.state)}*/}
 				<ul className="list-locations">

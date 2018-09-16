@@ -4,7 +4,6 @@ function MapHeader (props) {
  
 	return (
 		<div className="map-header">
-  			<button type="button">Hide</button>
   		</div>
 	)
 	
