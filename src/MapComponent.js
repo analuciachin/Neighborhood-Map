@@ -34,10 +34,18 @@ export class MapContainer extends Component {
 
   fetchData = (title) => {
     const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
+
     fetch(url)
-    .then(response => response.json())
+    .then(response => {
+      if(!response.ok) {
+        throw new Error();
+      }
+      return response.json();
+    })
     .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
-    .catch(err => console.log(err))
+    .catch(error => {
+      alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error.");
+    })
   }
 
 
