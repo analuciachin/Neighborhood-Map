@@ -26,7 +26,7 @@ class ListLocations extends Component {
 				{/*{JSON.stringify(this.state)}*/}
 				<ul className="list-locations">
 					{showingLocations.map((location) => (
-					<li key={location.title}>
+					<li style={{cursor: "pointer"}} key={location.title} onClick={() => this.props.onLocationClick(location)}>
 						{location.name}
 					</li>
 					))}

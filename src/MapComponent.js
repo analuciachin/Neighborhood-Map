@@ -6,7 +6,7 @@ import sortBy from 'sort-by';
 
 
 export class MapContainer extends Component {
-
+/*
   constructor(props) {
     super(props);
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -17,7 +17,7 @@ export class MapContainer extends Component {
       wikiData: []
     }  
   }
-
+*/
 /*
   componentDidMount() {
     
@@ -31,7 +31,7 @@ export class MapContainer extends Component {
     
   }
 */
-
+/*
   fetchData = (title) => {
     const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
 
@@ -47,8 +47,8 @@ export class MapContainer extends Component {
       alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error.");
     })
   }
-
-
+*/
+/*
   onMarkerClick(props, marker, e) {
     //console.log(props);
   this.setState({
@@ -60,7 +60,7 @@ export class MapContainer extends Component {
     this.fetchData(this.state.selectedPlace.title);
   }
   
-
+*/
 
   render() {
     
@@ -81,7 +81,7 @@ export class MapContainer extends Component {
     bounds.extend(this.props.locations[i].position);
     //console.log(bounds.extend(this.props.locations[i].position));
   }
-  
+
  
     if (!this.props.google) {
       return <div>Loading...</div>;
@@ -105,25 +105,26 @@ export class MapContainer extends Component {
           
           {showingMarkers.map((location) => (
             <Marker key={location.title}
-              onClick={this.onMarkerClick}
+              onClick={(props, marker, e) => this.props.onMarkerClick(props, marker, e, location)}
               position={location.position} 
               title={location.title}
               name={location.name}
               img={location.img} 
               articleUrl={location.articleUrl} />
           ))}
-          
+
+          {/*marker={this.props.activeMarker}*/}
           <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            style={{width: "20%"}}   
+            
+            visible={this.props.showingInfoWindow}
+            position={this.props.selectedPlace.position}   
           >
-            <div>
-              <h1 style={{textAlign: "center", fontSize: "1.5em"}}>{this.state.selectedPlace.name}</h1>
-              <img src={this.state.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "25%", height: "50%", padding: "0 10px 0 0"}} />
-              <p style={{fontFamily: "arial", fontSize: "1.2em"}}>{this.state.wikiData}</p> 
+            <div style={{width: "200px"}}>
+              <h1 style={{textAlign: "center", fontSize: "1.2em"}}>{this.props.selectedPlace.name}</h1>
+              <img src={this.props.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "25%", height: "50%", padding: "0 10px 0 0"}} />
+              <p style={{fontFamily: "arial", fontSize: "0.9em"}}>{this.props.wikiData}</p> 
               <div style={{textAlign: "right", marginRight: "1em"}}>
-                <p style={{fontStyle: "italic", marginTop: "1em"}}>See full article: <a href={this.state.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
+                <p style={{fontStyle: "italic", marginTop: "1em"}}>See full article: <a href={this.props.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
               </div>
             </div>
           </InfoWindow>
