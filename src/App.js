@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
-/*import logo from './logo.svg';*/
 import './App.css';
 import './styleGrid.css';
 import ListLocations from './ListLocations';
@@ -13,7 +12,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.markerClick = this.markerClick.bind(this);
+    // this.markerClick = this.markerClick.bind(this);
+    this.locationClick = this.locationClick.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
     this.state = {
       query:'',
       locations: [
@@ -34,9 +36,10 @@ class App extends Component {
         {title: 'Montreal Clock Tower', name: 'Clock Tower', img: require('./images/clock_tower.png'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Clock_Tower', position: {lat: 45.510044, lng: -73.548185}}    
       ],
       showingInfoWindow: false,
-      activeMarker: {},
+      //  activeMarker: {},
       selectedPlace: {},
-      wikiData: []
+      wikiData: [],
+      showingLocations: []      
     }
   }
 
@@ -58,7 +61,7 @@ class App extends Component {
         alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error.");
       })
   }
-
+/*
   markerClick = (props, marker, e, location) => {
     console.log(this.state.showingInfoWindow);
     this.setState({
@@ -68,20 +71,21 @@ class App extends Component {
     }); 
     this.fetchData(location.title);
   }    
-  
+*/  
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-  }
+  };
+
 
   locationClick = (location) => {
-    console.log(location.name);
+    //console.log(location.name);
     this.setState({
       selectedPlace: location,
       showingInfoWindow: false
-      //activeMarker: marker,     
+    //  activeMarker: marker,     
     }); 
     this.fetchData(location.title);
-  }
+  };
 
 
   render() {
@@ -97,12 +101,14 @@ class App extends Component {
             <MapHeader />
           </div>
           <div className="list-location-component">
-            <ListLocations locations={this.state.locations} query={this.state.query} onUpdateQuery={this.updateQuery} 
-              onLocationClick={this.locationClick}/>
+            <ListLocations locations={this.state.locations} query={this.state.query} 
+              onUpdateQuery={this.updateQuery} onLocationClick={this.locationClick}   />
           </div>
           <div className="map-container-component">
-            <MapContainer locations={this.state.locations} query={this.state.query} onMarkerClick={this.markerClick} activeMarker={this.state.activeMarker} showingInfoWindow={this.state.showingInfoWindow}
-              selectedPlace={this.state.selectedPlace} wikiData = {this.state.wikiData} />
+            <MapContainer locations={this.state.locations} query={this.state.query} 
+              onLocationClick={this.locationClick} showingLocations={this.state.showingLocations} 
+              showingInfoWindow={this.state.showingInfoWindow} selectedPlace={this.state.selectedPlace} 
+              wikiData = {this.state.wikiData}  />
           </div>
         </div>
       </div>

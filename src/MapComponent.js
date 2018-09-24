@@ -2,65 +2,10 @@ import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
-//import FineArtsMuseum from "./images/fine_arts.png";
 
 
 export class MapContainer extends Component {
-/*
-  constructor(props) {
-    super(props);
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-      wikiData: []
-    }  
-  }
-*/
-/*
-  componentDidMount() {
-    
-    const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-    const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&titles=pizza';
-    fetch(proxyurl + url)
-    .then(response => response.json())
-    //.then(body => console.log(body.query.pages[0].extract))
-    .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
-    .catch(err => console.log(err))
-    
-  }
-*/
-/*
-  fetchData = (title) => {
-    const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
 
-    fetch(url)
-    .then(response => {
-      if(!response.ok) {
-        throw new Error();
-      }
-      return response.json();
-    })
-    .then(body => this.setState({ wikiData: body.query.pages[0].extract }))
-    .catch(error => {
-      alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error.");
-    })
-  }
-*/
-/*
-  onMarkerClick(props, marker, e) {
-    //console.log(props);
-  this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-    
-    this.fetchData(this.state.selectedPlace.title);
-  }
-  
-*/
 
   render() {
     
@@ -105,26 +50,30 @@ export class MapContainer extends Component {
           
           {showingMarkers.map((location) => (
             <Marker key={location.title}
-              onClick={(props, marker, e) => this.props.onMarkerClick(props, marker, e, location)}
+              onClick={() => this.props.onLocationClick(location)}
               position={location.position} 
               title={location.title}
               name={location.name}
               img={location.img} 
-              articleUrl={location.articleUrl} />
+              articleUrl={location.articleUrl} 
+              icon={this.props.selectedPlace.name !== location.name ?
+                'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                : 
+                'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+              } />
           ))}
 
-          {/*marker={this.props.activeMarker}*/}
+
           <InfoWindow
-            
             visible={this.props.showingInfoWindow}
             position={this.props.selectedPlace.position}   
           >
             <div style={{width: "200px"}}>
               <h1 style={{textAlign: "center", fontSize: "1.2em"}}>{this.props.selectedPlace.name}</h1>
-              <img src={this.props.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "25%", height: "50%", padding: "0 10px 0 0"}} />
-              <p style={{fontFamily: "arial", fontSize: "0.9em"}}>{this.props.wikiData}</p> 
+              <img src={this.props.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "40%", height: "75%", padding: "0 10px 0 0"}} />
+              <p style={{fontFamily: "arial", fontSize: "0.85em"}}>{this.props.wikiData}</p> 
               <div style={{textAlign: "right", marginRight: "1em"}}>
-                <p style={{fontStyle: "italic", marginTop: "1em"}}>See full article: <a href={this.props.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
+                <p style={{fontStyle: "italic", marginTop: "1em", fontSize: "0.85em"}}>See full article: <a href={this.props.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>
               </div>
             </div>
           </InfoWindow>
