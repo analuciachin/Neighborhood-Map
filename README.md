@@ -6,7 +6,7 @@ Neighborhood Map is a project from the Front-end Web Development Nanodegree prog
 
 The project uses Node.js, if you do not have it installed, you can download it here: [Node.js](https://nodejs.org/en/)
 
-* run `git clone https://github.com/analuciachin/My_Reads.git` to clone this repository 
+* run `git clone https://github.com/analuciachin/Neighborhood_Map.git` to clone this repository 
 * go into the application folder and install all modules listed as dependencies in package `package.json` by running the command `npm install`
 * install the additional packages by running the commands `npm install --save google-maps-react` and `npm install --save escape-string-regexp sort-by`
 * run the app in the development mode with `npm start`
@@ -14,10 +14,11 @@ The project uses Node.js, if you do not have it installed, you can download it h
 A new browser window should automatically open displaying the app. If it does not, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
 
 
-##Features
+## Features
 1. Type into the search box to filter the shown locations on the map.
-2. 
+2. Click on a list location to see the location in the map and the information fetched from Wikipedia API
 3. Click on any marker to see the location details fetched from the Wikipedia API.
+4. The marker of the choosen location will change to blue color
 
 
 ## Resources and Documentation:
