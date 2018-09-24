@@ -21,11 +21,11 @@ export class MapContainer extends Component {
     showingMarkers.sort(sortBy('name'))
  
  
-  let bounds = new this.props.google.maps.LatLngBounds();
-  for (let i=0; i < this.props.locations.length; i++) {
-    bounds.extend(this.props.locations[i].position);
-    //console.log(bounds.extend(this.props.locations[i].position));
-  }
+    let bounds = new this.props.google.maps.LatLngBounds();
+    for (let i=0; i < this.props.locations.length; i++) {
+      bounds.extend(this.props.locations[i].position);
+      //console.log(bounds.extend(this.props.locations[i].position));
+    }
 
  
     if (!this.props.google) {
@@ -33,7 +33,7 @@ export class MapContainer extends Component {
     }
 
     return (
-      <div className="map-container">
+      <div className="map-container" role="application">
         <Map
           style={{
             width: "100%",

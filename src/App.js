@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
 import './App.css';
 import './styleGrid.css';
 import ListLocations from './ListLocations';
@@ -12,7 +10,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    // this.markerClick = this.markerClick.bind(this);
     this.locationClick = this.locationClick.bind(this);
     this.fetchData = this.fetchData.bind(this);
     this.updateQuery = this.updateQuery.bind(this);
@@ -36,13 +33,13 @@ class App extends Component {
         {title: 'Montreal Clock Tower', name: 'Clock Tower', img: require('./images/clock_tower.png'), articleUrl: 'https://en.wikipedia.org/wiki/Montreal_Clock_Tower', position: {lat: 45.510044, lng: -73.548185}}    
       ],
       showingInfoWindow: false,
-      //  activeMarker: {},
       selectedPlace: {},
       wikiData: [],
       showingLocations: []      
     }
   }
 
+  // Fetch data from Wikipedia
   fetchData = (title) => {
     const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
 
@@ -58,31 +55,21 @@ class App extends Component {
         showingInfoWindow: true
       }))
       .catch(error => {
-        alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error.");
+        alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error."); //fetch error handling
       })
-  }
-/*
-  markerClick = (props, marker, e, location) => {
-    console.log(this.state.showingInfoWindow);
-    this.setState({
-      selectedPlace: location,
-      showingInfoWindow: false
-      //activeMarker: marker,     
-    }); 
-    this.fetchData(location.title);
-  }    
-*/  
+  };
+  
+  //Function called when user changes input in the search bar
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
   };
 
-
+  // Function called when user clicks a marker or list item - opens infowindow
   locationClick = (location) => {
     //console.log(location.name);
     this.setState({
       selectedPlace: location,
-      showingInfoWindow: false
-    //  activeMarker: marker,     
+      showingInfoWindow: false     
     }); 
     this.fetchData(location.title);
   };
@@ -106,9 +93,8 @@ class App extends Component {
           </div>
           <div className="map-container-component">
             <MapContainer locations={this.state.locations} query={this.state.query} 
-              onLocationClick={this.locationClick} showingLocations={this.state.showingLocations} 
-              showingInfoWindow={this.state.showingInfoWindow} selectedPlace={this.state.selectedPlace} 
-              wikiData = {this.state.wikiData}  />
+              onLocationClick={this.locationClick} showingInfoWindow={this.state.showingInfoWindow}  
+              selectedPlace={this.state.selectedPlace} wikiData={this.state.wikiData}  />
           </div>
         </div>
       </div>
