@@ -70,7 +70,7 @@ export class MapContainer extends Component {
           >
             <div style={{width: "200px"}}>
               <h1 style={{textAlign: "center", fontSize: "1.2em"}}>{this.props.selectedPlace.name}</h1>
-              <img src={this.props.selectedPlace.img} alt="fine arts museum" style={{float: "left", width: "40%", height: "75%", padding: "0 10px 0 0"}} />
+              <img src={this.props.selectedPlace.img} alt={this.props.name} style={{float: "left", width: "40%", height: "75%", padding: "0 10px 0 0"}} />
               <p style={{fontFamily: "arial", fontSize: "0.85em"}}>{this.props.wikiData}</p> 
               <div style={{textAlign: "right", marginRight: "1em"}}>
                 <p style={{fontStyle: "italic", marginTop: "1em", fontSize: "0.85em"}}>See full article: <a href={this.props.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>

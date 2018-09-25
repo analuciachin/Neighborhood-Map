@@ -81,21 +81,21 @@ class App extends Component {
     return (
       <div className="app">
         <div className="grid-container">
-          <div className="search-location-header-component">
+          <header className="search-location-header-component">
             <SearchLocationsHeader />
-          </div>
-          <div className="map-header-component">
+          </header>
+          <section className="map-header-component">
             <MapHeader />
-          </div>
-          <div className="list-location-component">
+          </section>
+          <aside className="list-location-component">
             <ListLocations locations={this.state.locations} query={this.state.query} 
               onUpdateQuery={this.updateQuery} onLocationClick={this.locationClick}   />
-          </div>
-          <div className="map-container-component">
+          </aside>
+          <main className="map-container-component">
             <MapContainer locations={this.state.locations} query={this.state.query} 
               onLocationClick={this.locationClick} showingInfoWindow={this.state.showingInfoWindow}  
               selectedPlace={this.state.selectedPlace} wikiData={this.state.wikiData}  />
-          </div>
+          </main>
         </div>
       </div>
     )

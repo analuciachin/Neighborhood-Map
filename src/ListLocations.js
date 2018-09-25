@@ -21,12 +21,12 @@ class ListLocations extends Component {
 		return (
 			<div className="search-bar-list-locations">
 				<div className="search-locations-bar">
-					<input type="text" placeholder="Search by location" tabindex="0" value={this.props.query} onChange={(event) => this.props.onUpdateQuery(event.target.value)} />
+					<input type="text" placeholder="Search by location" tabIndex="0" aria-label="search input field" value={this.props.query} onChange={(event) => this.props.onUpdateQuery(event.target.value)} />
 				</div>
 				{/*{JSON.stringify(this.state)}*/}
-				<ul className="list-locations" role="list">
+				<ul className="list-locations">
 					{showingLocations.map((location) => (
-					<li key={location.title} style={{cursor: "pointer"}} onClick={() => this.props.onLocationClick(location)} role="listitem" >
+					<li key={location.title} style={{cursor: "pointer"}} onClick={() => this.props.onLocationClick(location)} tabIndex="0" role="button">
 						{location.name}
 					</li>
 					))}
