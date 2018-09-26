@@ -27,6 +27,8 @@ A new browser window should automatically open displaying the app. If it does no
 * [MediaWikiAPI for Wikipedia] (https://www.mediawiki.org/wiki/API:Main_page)
 * [google-maps-react package] (https://www.npmjs.com/package/google-maps-react)
 * [Build a realtime PWA with React](https://medium.com/front-end-hacking/build-a-realtime-pwa-with-react-99e7b0fd3270)
+* [Simulate an unhandledrejection event](http://2ality.com/2016/04/unhandled-rejections.html)
+
 
 ## Udacity Resources:
 * [Project Rubric](https://review.udacity.com/#!/rubrics/1351/view)

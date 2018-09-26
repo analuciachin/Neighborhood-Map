@@ -4,6 +4,19 @@ import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 
 
+// Handling invalid Google Maps API key
+window.gm_authFailure = () => {
+  alert("We can't access Google Maps API, please check you API key.");
+}
+
+// Handling when Google Maps API fails
+// To simulate an unhandledrejection event: http://2ality.com/2016/04/unhandled-rejections.html
+window.addEventListener("unhandledrejection", function (event) {
+  alert("Unable to load Google Maps. Reason: " + event.reason);
+  event.preventDefault();
+});
+
+
 export class MapContainer extends Component {
 
 
