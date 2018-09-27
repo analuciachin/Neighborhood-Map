@@ -83,7 +83,7 @@ export class MapContainer extends Component {
           >
             <div className="infowindow-data">
               <h1>{this.props.selectedPlace.name}</h1>
-              <img src={this.props.selectedPlace.img} alt={this.props.name} style={{float: "left", width: "40%", height: "75%", padding: "0 10px 0 0"}} />
+              <img src={this.props.selectedPlace.img} alt={this.props.name} />
               <p>{this.props.wikiData}</p> 
               <div className="infowindow-link">
                 <p>See full article: <a href={this.props.selectedPlace.articleUrl} target="_blank">Wikipedia</a></p>

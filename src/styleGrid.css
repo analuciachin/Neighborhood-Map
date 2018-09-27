@@ -119,12 +119,19 @@
   }
 
   .infowindow-data {
-    width: 400px;
+    width: 300px;
   }
 
   .infowindow-data h1 {
     text-align: center;
-    font-size: 1.15em;
+    font-size: 1.1em;
+  }
+
+  .infowindow-data img {
+    float: left;
+    width: 25%;
+    height: 50%;
+    padding: 0 10px 0 0;
   }
 
   .infowindow-data p {
@@ -180,7 +187,7 @@
   }
 
   .infowindow-data {
-    width: 600px;
+    width: 500px;
   }
 
   .infowindow-data h1 {
@@ -190,8 +197,8 @@
 
   .infowindow-data img {
     float: left;
-    width: 15%;
-    height: 30%;
+    width: 25%;
+    height: 50%;
     padding: 0 10px 0 0;
   }
 
