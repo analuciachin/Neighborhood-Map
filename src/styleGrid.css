@@ -39,6 +39,37 @@
     text-align: left;
   }
 
+  .infowindow-data {
+    width: 200px;
+  }
+
+  .infowindow-data h1 {
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  .infowindow-data img {
+    float: left;
+    width: 40%;
+    height: 75%;
+    padding: 0 10px 0 0;
+  }
+
+  .infowindow-data p {
+    font-family: arial;
+    font-size: 0.85em;
+  }
+
+  .infowindow-link {
+    text-align: right;
+    margin-right: 1em;
+  }
+
+  .infowindow-link p {
+    font-style: italic;
+    margin-top: 1em;
+    font-size: 0.85em;
+  }
 }
 
 
@@ -86,6 +117,26 @@
     margin: auto ;
     text-align: left;
   }
+
+  .infowindow-data {
+    width: 400px;
+  }
+
+  .infowindow-data h1 {
+    text-align: center;
+    font-size: 1.15em;
+  }
+
+  .infowindow-data p {
+    font-family: arial;
+    font-size: 0.95em;
+  }
+
+  .infowindow-link p {
+    font-style: italic;
+    margin-top: 1em;
+    font-size: 0.95em;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -126,6 +177,33 @@
   .search-locations-title h1 {
     margin: auto;
     text-align: left;
+  }
+
+  .infowindow-data {
+    width: 600px;
+  }
+
+  .infowindow-data h1 {
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  .infowindow-data img {
+    float: left;
+    width: 15%;
+    height: 30%;
+    padding: 0 10px 0 0;
+  }
+
+  .infowindow-data p {
+    font-family: arial;
+    font-size: 1em;
+  }
+
+  .infowindow-link p {
+    font-style: italic;
+    margin-top: 1em;
+    font-size: 1em;
   }
 
 }
