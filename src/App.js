@@ -42,7 +42,11 @@ class App extends Component {
   // Fetch data from Wikipedia
   fetchData = (title) => {
     const url = `https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&exsentences=1&explaintext&exintro=1&titles=${title}`;
-
+    this.setState ({
+      showingInfoWindow: true,
+      wikiData: "Loading data from Wikipedia..."
+    })
+    
     fetch(url)
       .then(response => {
         if(!response.ok) {
@@ -50,9 +54,10 @@ class App extends Component {
         }
         return response.json();
       })
+
       .then(body => this.setState({ 
         wikiData: body.query.pages[0].extract, 
-        showingInfoWindow: true
+        //showingInfoWindow: true
       }))
       .catch(error => {
         alert("Unable to fetch data from Wikipedia. Network connection issue or HTTP error."); //fetch error handling
